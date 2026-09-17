@@ -12,7 +12,6 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import PartCard from '../components/PartCard';
-import EngineExplorer from '../components/EngineExplorer';
 import { fetchParts } from '../api';
 
 const PAGE_SIZE = 24;
@@ -47,62 +46,32 @@ export default function CatalogPage() {
       <Box
         sx={{
           position: 'relative',
-          minHeight: { xs: 580, md: '78vh' },
-          maxHeight: { md: 810 },
+          minHeight: { xs: '60vh', md: '78vh' },
+          display: 'flex',
+          alignItems: 'flex-end',
+          bgcolor: (t) => (t.palette.mode === 'dark' ? '#000' : '#EDEDED'),
+          color: (t) => (t.palette.mode === 'dark' ? '#fff' : '#111'),
+          px: { xs: 3, md: 8 },
+          pb: { xs: 5, md: 8 },
           overflow: 'hidden',
         }}
       >
-        <EngineExplorer />
-
-        <Box
-          sx={{
-            position: 'absolute',
-            zIndex: 4,
-            left: { xs: 24, md: 64 },
-            right: { xs: 24, md: 'auto' },
-            bottom: { xs: 182, md: 72 },
-            maxWidth: { xs: 390, md: 500 },
-            pointerEvents: 'none',
-          }}
-        >
-          <Typography
-            variant="overline"
-            sx={{ fontWeight: 800, letterSpacing: '0.14em', color: 'secondary.main' }}
-          >
-            Engineered for motion
-          </Typography>
-          <Typography variant="h1" sx={{ mt: 0.5, mb: 1.5 }}>
+        <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 720 }}>
+          <Typography variant="h1" sx={{ mb: 2 }}>
             Omegation Parts
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary" sx={{ maxWidth: 410, mb: 2.5 }}>
-            Выберите узел на схеме или найдите запчасть по артикулу, названию и номеру детали.
+          <Typography variant="subtitle1" color="text.secondary" sx={{ mb: 3, maxWidth: 480 }}>
+            Оригинальные запчасти и аналоги. Прямая синхронизация остатков с Ozon.
           </Typography>
           <Button
             variant="contained"
             color="primary"
             size="large"
             onClick={() => document.getElementById('catalog-grid')?.scrollIntoView({ behavior: 'smooth' })}
-            sx={{ pointerEvents: 'auto' }}
           >
             Смотреть каталог
           </Button>
         </Box>
-
-        <Typography
-          variant="caption"
-          sx={{
-            position: 'absolute',
-            zIndex: 4,
-            right: { xs: 20, md: 48 },
-            bottom: 20,
-            color: 'text.secondary',
-            letterSpacing: '0.06em',
-            textTransform: 'uppercase',
-            pointerEvents: 'none',
-          }}
-        >
-          Нажмите на узел двигателя
-        </Typography>
       </Box>
 
       <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }} id="catalog-grid">
